@@ -36,57 +36,30 @@ const fp = flatpickr("#datetime-picker", options);
 
 
 function timerFn() {
-    setInterval(() => {
+    timerId = setInterval(() => {
         const deltaTime = targetDate - Date.now();
-        const timeValue = convertMs(deltaTime);
-        setTimeInterface(timeValue);
-        console.log(timeValue);
+        if (deltaTime < 0) {
+            clearInterval(timerId);
+            return;
+        }
+        setTimeInterface(deltaTime);
     }, 1000)
 };
 
 
 function setTimeInterface(time) {
-    daysUI.textContent = addLeadingZero(`${convertMs(time).days.value}`)
-    hoursUI.textContent = addLeadingZero(`${convertMs(time).hours.value}`)
-    minutuesUI.textContent = addLeadingZero(`${convertMs(time).minutes.value}`)
-    secondsUI.textContent = addLeadingZero(`${convertMs(time).seconds.value}`)
+    daysUI.textContent = addLeadingZero(convertMs(time).days)
+    hoursUI.textContent = addLeadingZero(convertMs(time).hours)
+    minutuesUI.textContent = addLeadingZero(convertMs(time).minutes)
+    secondsUI.textContent = addLeadingZero(convertMs(time).seconds)
 
 }
 
-function addLeadingZero(Number) {
-    const num = Number.toString();
-    if (num.length < 2) {
-        'num'.padStart(2, '0')
-    }
-    return 
+function addLeadingZero(num) {
+    number = num.toString();
+    return number.padStart(2, '0');
+    
 }
-
-
-
-
-
-
-// function onStartCountdown() {
-//     timerId = setInterval(() => {
-//         ms = Date.parse(fp.selectedDates[0]) - Date.now()
-//         days.textContent = addLeadingZero(`${convertMs(ms).days}`)
-//         hours.textContent = addLeadingZero(`${convertMs(ms).hours}`)
-//         minutes.textContent = addLeadingZero(`${convertMs(ms).minutes}`)
-//         seconds.textContent = addLeadingZero(`${convertMs(ms).seconds}`)
-//         if (ms <= 1000) {
-//            clearInterval(timerId)
-//         }
-//     }, 1000)
-// }
-
-
-
-
-
-
-
-
-
 
 
 
