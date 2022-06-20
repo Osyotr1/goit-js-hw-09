@@ -13,7 +13,7 @@ const divBox = document.createElement("div")
 btnStop.disabled = true;
 
 btnStart.addEventListener('click', () => {
-    disabeStartBtn();   
+    disableBtn();   
     timerId = setInterval(() => {
       document.body.style.backgroundColor = `${getRandomHexColor()}`
     }, 1000);
@@ -21,24 +21,19 @@ btnStart.addEventListener('click', () => {
 });
 
 btnStop.addEventListener('click', () => {
-    disableStopBtn(); 
+    disableBtn(); 
     clearInterval(timerId);
 });
 
 
-function disabeStartBtn() {
-    btnStart.disabled = true;
-    btnStop.disabled = false;
-}
-
-function disableStopBtn() {
-    btnStop.disabled = true;
-    btnStart.disabled = false;
-}
+function disableBtn() {
+  btnStart.toggleAttribute("disabled");
+  btnStop.toggleAttribute("disabled");
+};
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
+};
 
 
 

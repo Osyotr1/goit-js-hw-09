@@ -1,12 +1,15 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css"
+import Notiflix from 'notiflix';
 
 const body = document.querySelector('body')
 const daysUI = document.querySelector('[data-days]');
 const hoursUI = document.querySelector('[data-hours]');
 const minutuesUI = document.querySelector('[data-minutes]');
 const secondsUI = document.querySelector('[data-seconds]');
-body.style.paddingLeft = '100px';
+const divBox = document.querySelector('.timer');
+
+
 
 const startBtn = document.querySelector('button[data-start');
 startBtn.disabled = true;
@@ -22,7 +25,7 @@ const options = {
   onClose(selectedDates) {
       console.log(selectedDates[0]);
       if (selectedDates[0] < options.defaultDate) {
-          window.alert("Please choose a date in the future")
+          Notiflix.Notify.warning("Please choose a date in the future")
           return;
       } else {
           targetDate = selectedDates[0];
@@ -84,3 +87,15 @@ function convertMs(ms) {
     
 
 };
+
+
+
+//STYLES
+body.style.paddingLeft = '100px';
+divBox.style.font = "bold 30px Sans-serif"
+divBox.style.display = "flex";
+divBox.style.justifyContent = 'center';
+divBox.style.marginTop = '50px';
+hoursUI.style.marginLeft = '50px';
+minutuesUI.style.marginLeft = '50px';
+secondsUI.style.marginLeft = '50px';
