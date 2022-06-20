@@ -39,6 +39,7 @@ const fp = flatpickr("#datetime-picker", options);
 
 
 function timerFn() {
+    startBtn.disabled = true;
     const timerId = setInterval(() => {
         const deltaTime = targetDate - Date.now();
         if (deltaTime < 0) {
