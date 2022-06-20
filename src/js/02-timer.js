@@ -39,7 +39,7 @@ const fp = flatpickr("#datetime-picker", options);
 
 
 function timerFn() {
-    timerId = setInterval(() => {
+    const timerId = setInterval(() => {
         const deltaTime = targetDate - Date.now();
         if (deltaTime < 0) {
             clearInterval(timerId);
@@ -59,7 +59,7 @@ function setTimeInterface(time) {
 }
 
 function addLeadingZero(num) {
-    number = num.toString();
+    let number = num.toString();
     return number.padStart(2, '0');
     
 }
